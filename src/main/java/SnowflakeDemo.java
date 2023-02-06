@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 public class SnowflakeDemo {
 
-    private static final String JDBC_STRING_TEMPLATE = "jdbc:snowflake://%s.snowflakecomputing.com/?";
+    private static final String JDBC_STRING_TEMPLATE = "jdbc:snowflake://%s.snowflakecomputing.com/?authenticator=%s";
 
     private static final ResourceBundle rb = ResourceBundle.getBundle("db");
 
@@ -30,12 +30,7 @@ public class SnowflakeDemo {
 
     public static String composeJdbcString() {
         return String.format(JDBC_STRING_TEMPLATE,
-                rb.getString("db.account"));
-
-//        return String.format(JDBC_STRING_TEMPLATE,
-//                rb.getString("db.account"),
-//                rb.getString("db.warehouse"),
-//                rb.getString("db.schema"),
-//                rb.getString("db.database"));
+                rb.getString("db.account"),
+                rb.getString("db.authenticator"));
     }
 }
